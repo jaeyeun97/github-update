@@ -20,7 +20,7 @@ def update_repo(repo_name):
             repo.git.pull()
             return "Successful"
         except git.errors.NoSuchPathError:
-            git.Git().clone("git@github.com:jaeyeun97/"+repo_name+".git", repo_path);
+            git.Git().clone("https://github.com/jaeyeun97/"+repo_name+".git", repo_path);
             repo = git.Repo("/srv/dev/"+repo_name)
             repo.git.pull()
             return "New repository Cloned"
