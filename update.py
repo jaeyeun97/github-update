@@ -2,11 +2,8 @@ from flask import Flask
 from flask import request
 from gevent.pywsgi import WSGIServer
 import git
-import os
 
 app = Flask(__name__)
-
-BASE_DIR = "./"
 
 @app.route('/')
 def main():
@@ -16,7 +13,7 @@ def main():
 @app.route('/<repo_name>', methods=['GET', 'POST'])
 def update_repo(repo_name):
     if request.method == 'POST':
-        repo_path = os.path.join(BASE_DIR, repo_name)
+        repo_path = "/srv/" + repo_name
         try:
             repo = git.Repo(repo_path)
             repo.git.pull()
